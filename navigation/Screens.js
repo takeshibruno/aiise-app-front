@@ -1,10 +1,9 @@
-import { Animated, Dimensions, Easing } from "react-native";
+import { Dimensions } from "react-native";
 // header for screens
-import { Header, Icon } from "../components";
-import { argonTheme, tabs } from "../constants";
+import { Header } from "../components";
 
 import Articles from "../screens/Articles";
-import { Block } from "galio-framework";
+
 // drawer
 import CustomDrawerContent from "./Menu";
 import Elements from "../screens/Elements";
@@ -24,7 +23,6 @@ const { width } = Dimensions.get("screen");
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-const Tab = createBottomTabNavigator();
 
 function ElementsStack(props) {
   return (
@@ -42,23 +40,6 @@ function ElementsStack(props) {
             <Header title="Elements" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" },
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
@@ -81,23 +62,6 @@ function ArticlesStack(props) {
             <Header title="Articles" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" },
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
@@ -130,23 +94,6 @@ function ProfileStack(props) {
           headerTransparent: true,
         }}
       />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
-        }}
-      />
     </Stack.Navigator>
   );
 }
@@ -156,11 +103,11 @@ function InicioStack(props) {
     <Stack.Navigator
       screenOptions={{
         mode: "card",
-        headerShown: "screen",
+        headerShown: false,
       }}
     >
       <Stack.Screen
-        name="Inicio"
+        name="InicioSub"
         component={Inicio}
         options={{
           header: ({ navigation, scene }) => (
@@ -173,23 +120,6 @@ function InicioStack(props) {
             />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" },
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
@@ -221,40 +151,15 @@ function AgendaStack(props) {
     <Stack.Navigator
       screenOptions={{
         mode: "card",
-        headerShown: "screen",
+        headerShown: false,
       }}
     >
       <Stack.Screen
-        name="Agenda"
+        name="AgendaSub"
+        title="Voltar"
         component={Agenda}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title="Agenda"
-              search
-              options
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
           cardStyle: { backgroundColor: "#F8F9FE" },
-        }}
-      />
-      <Stack.Screen
-        name="Pro"
-        component={Pro}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              title=""
-              back
-              white
-              transparent
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
@@ -270,7 +175,7 @@ function AppStack(props) {
         backgroundColor: "white",
         width: width * 0.8,
       }}
-      drawerContentOptions={{
+      screenOptionsr={{
         activeTintcolor: "white",
         inactiveTintColor: "#000",
         activeBackgroundColor: "transparent",
@@ -300,6 +205,13 @@ function AppStack(props) {
         }}
       />
       <Drawer.Screen
+        name="Agenda"
+        component={AgendaStack}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
         name="Profile"
         component={ProfileStack}
         screenOptions={{
@@ -323,13 +235,6 @@ function AppStack(props) {
       <Drawer.Screen
         name="Articles"
         component={ArticlesStack}
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-      <Drawer.Screen
-        name="Agenda"
-        component={AgendaStack}
         screenOptions={{
           headerShown: false,
         }}
