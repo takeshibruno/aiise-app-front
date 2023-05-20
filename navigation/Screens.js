@@ -9,7 +9,8 @@ import { Block } from "galio-framework";
 import CustomDrawerContent from "./Menu";
 import Elements from "../screens/Elements";
 // screens
-import Home from "../screens/Home";
+import Inicio from "../screens/Inicio";
+import Agenda from "../screens/Agenda";
 import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
@@ -150,7 +151,7 @@ function ProfileStack(props) {
   );
 }
 
-function HomeStack(props) {
+function InicioStack(props) {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -159,12 +160,12 @@ function HomeStack(props) {
       }}
     >
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="Inicio"
+        component={Inicio}
         options={{
           header: ({ navigation, scene }) => (
             <Header
-              title="Home"
+              title="Inicio"
               search
               options
               navigation={navigation}
@@ -215,6 +216,51 @@ export default function OnboardingStack(props) {
   );
 }
 
+function AgendaStack(props) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        mode: "card",
+        headerShown: "screen",
+      }}
+    >
+      <Stack.Screen
+        name="Agenda"
+        component={Agenda}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Agenda"
+              search
+              options
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
+      <Stack.Screen
+        name="Pro"
+        component={Pro}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title=""
+              back
+              white
+              transparent
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          headerTransparent: true,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function AppStack(props) {
   return (
     <Drawer.Navigator
@@ -244,40 +290,47 @@ function AppStack(props) {
           fontWeight: "normal",
         },
       }}
-      initialRouteName="Home"
+      initialRouteName="Inicio"
     >
       <Drawer.Screen
-        name="Home"
-        component={HomeStack}
-        options={{
+        name="Inicio"
+        component={InicioStack}
+        screenOptions={{
           headerShown: false,
         }}
       />
       <Drawer.Screen
         name="Profile"
         component={ProfileStack}
-        options={{
+        screenOptions={{
           headerShown: false,
         }}
       />
       <Drawer.Screen
         name="Account"
         component={Register}
-        options={{
+        screenOptions={{
           headerShown: false,
         }}
       />
       <Drawer.Screen
         name="Elements"
         component={ElementsStack}
-        options={{
+        screenOptions={{
           headerShown: false,
         }}
       />
       <Drawer.Screen
         name="Articles"
         component={ArticlesStack}
-        options={{
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Agenda"
+        component={AgendaStack}
+        screenOptions={{
           headerShown: false,
         }}
       />
