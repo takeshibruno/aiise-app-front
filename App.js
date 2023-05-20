@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Image } from "react-native";
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from '@use-expo/font';
 import { Asset } from "expo-asset";
 import { Block, GalioProvider } from "galio-framework";
@@ -58,14 +58,9 @@ export default props => {
   };
 
   if(!fontsLoaded && !isLoadingComplete) {
-    return (
-      <AppLoading
-        startAsync={_loadResourcesAsync}
-        onError={_handleLoadingError}
-        onFinish={_handleFinishLoading}
-      />
-    );
+    SplashScreen.preventAutoHideAsync();
   } else if(fontsLoaded) {
+    SplashScreen.hideAsync();
     return (
       <NavigationContainer>
         <GalioProvider theme={argonTheme}>
