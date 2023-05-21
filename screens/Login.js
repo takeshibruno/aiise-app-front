@@ -12,6 +12,7 @@ import { Block, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import {url_back} from "../constants/back";
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const { width, height } = Dimensions.get("screen");
