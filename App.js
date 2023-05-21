@@ -5,6 +5,7 @@ import { useFonts } from '@use-expo/font';
 import { Asset } from "expo-asset";
 import { Block, GalioProvider } from "galio-framework";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 // Before rendering any navigation stack
 import { enableScreens } from "react-native-screens";
@@ -23,6 +24,17 @@ const assetImages = [
   Images.iOSLogo,
   Images.androidLogo
 ];
+
+const Stack = createStackNavigator();
+
+const AuthStack = () => {
+  return (
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen name="Login" component={LoginScreen} />
+      {/* Add other authentication screens if needed */}
+    </Stack.Navigator>
+  );
+};
 
 // cache product images
 articles.map(article => assetImages.push(article.image));

@@ -12,12 +12,17 @@ import { Block, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import {url_back} from "../constants/back";
-import { NavigationContainer } from '@react-navigation/native';
 
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Inicio from './Inicio';
 
 const { width, height } = Dimensions.get("screen");
 
+
 const MyComponent = () => {
+  const navigation = useNavigation();
+
   const [user_email, setEmail] = useState('');
   const [user_password, setPassword] = useState('');
 
@@ -62,6 +67,8 @@ const MyComponent = () => {
       .then(data => {
         // Handle successful response
         console.log(data);
+        navigation.navigate(Inicio)
+
       })
       .catch(error => {
         // Handle error
@@ -69,6 +76,7 @@ const MyComponent = () => {
       });
 
   };
+  
 
   return (
     <Block flex center>
