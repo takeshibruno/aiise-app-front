@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { TouchableWithoutFeedback } from 'react-native';
 import {
   StyleSheet,
   ImageBackground,
@@ -12,6 +13,25 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
+
+const MyButton = () => {
+  const handleButtonClick = () => {
+    // Code to be executed when the button is clicked
+    console.log('Button clicked!');
+  };
+
+  return (
+    <TouchableWithoutFeedback onPress={handleButtonClick}>
+      <Block middle>
+        <Button color="primary" style={styles.createButton}>
+          <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+            INICIAR SESIÓN
+          </Text>
+        </Button>
+      </Block>
+    </TouchableWithoutFeedback>
+  );
+};
 
 class Login extends React.Component {
   render() {
@@ -69,11 +89,7 @@ class Login extends React.Component {
                       />
                     </Block>
                     <Block middle>
-                      <Button color="primary" style={styles.createButton}>
-                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                          INICIAR SESIÓN
-                        </Text>
-                      </Button>
+                      <MyButton />
                     </Block>
                   </KeyboardAvoidingView>
                 </Block>
@@ -116,6 +132,8 @@ class Login extends React.Component {
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   registerContainer: {
