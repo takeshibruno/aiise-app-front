@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {View} from 'react-native';
 import {
   StyleSheet,
   ImageBackground,
@@ -8,10 +8,10 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
-
+import Modal from 'react-native-modal';
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
-import {url_back} from "../constants/back";
+import { url_back } from "../constants/back";
 
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,6 +25,7 @@ const MyComponent = () => {
 
   const [user_email, setEmail] = useState('');
   const [user_password, setPassword] = useState('');
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const handleEmailChange = (text) => {
     setEmail(text);
@@ -40,12 +41,12 @@ const MyComponent = () => {
     console.log('Password:', user_password);
     // You can perform further processing with the input values here
 
-    if (user_email.trim().length == 0){
+    if (user_email.trim().length == 0) {
       console.log("Email vazio");
       return;
     }
 
-    if (user_password.trim().length == 0){
+    if (user_password.trim().length == 0) {
       console.log("Senha vazia");
       return;
     }
@@ -60,14 +61,21 @@ const MyComponent = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(requestData) 
+      body: JSON.stringify(requestData)
     })
-  
+
       .then(response => response.json())
       .then(data => {
         // Handle successful response
         console.log(data);
-        navigation.navigate(Inicio)
+
+        const desiredValue = 'Autenticado';
+
+        if (data.text === desiredValue) {
+          navigation.navigate(Inicio);
+        } else {
+          setModalVisible(true); // Show the modal
+        }
 
       })
       .catch(error => {
@@ -75,8 +83,10 @@ const MyComponent = () => {
         console.error(error);
       });
 
+
+
   };
-  
+
 
   return (
     <Block flex center>
@@ -126,10 +136,20 @@ const MyComponent = () => {
                 INICIAR SESIÓN
               </Text>
             </Button>
-            
+
           </Block>
         </Block>
       </KeyboardAvoidingView>
+      <Modal isVisible={isModalVisible}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text bold size={14} color={argonTheme.COLORS.WHITE}> CORREO O CONTRASEÑA INVÁLIDOS! </Text>
+          <Button title="Close" onPress={() => setModalVisible(false)}>
+          <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+                CERRAR
+              </Text>
+          </Button>
+        </View>
+      </Modal>
     </Block>
   );
 };
