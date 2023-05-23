@@ -1,30 +1,22 @@
 import React, { useState } from 'react';
 import {View} from 'react-native';
-import {
-  StyleSheet,
-  ImageBackground,
-  Dimensions,
-  StatusBar,
-  KeyboardAvoidingView
-} from "react-native";
+import {StyleSheet, ImageBackground, Dimensions, StatusBar, KeyboardAvoidingView} from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Modal from 'react-native-modal';
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import { url_back } from "../constants/back";
-
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import Inicio from './Inicio';
 
 const { width, height } = Dimensions.get("screen");
-
 
 const MyComponent = () => {
   const navigation = useNavigation();
 
   const [user_email, setEmail] = useState('');
   const [user_password, setPassword] = useState('');
+
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleEmailChange = (text) => {
@@ -82,11 +74,7 @@ const MyComponent = () => {
         // Handle error
         console.error(error);
       });
-
-
-
   };
-
 
   return (
     <Block flex center>
