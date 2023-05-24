@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {View} from 'react-native';
-import {StyleSheet, ImageBackground, Dimensions, StatusBar, KeyboardAvoidingView} from "react-native";
+import { View } from 'react-native';
+import { StyleSheet, ImageBackground, Dimensions, StatusBar, KeyboardAvoidingView } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Modal from 'react-native-modal';
 import { Button, Icon, Input } from "../components";
@@ -8,6 +8,7 @@ import { Images, argonTheme } from "../constants";
 import { url_back } from "../constants/back";
 import { useNavigation } from '@react-navigation/native';
 import Inicio from './Inicio';
+import Register from './Register';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -124,7 +125,6 @@ const MyComponent = () => {
                 INICIAR SESIÓN
               </Text>
             </Button>
-
           </Block>
         </Block>
       </KeyboardAvoidingView>
@@ -132,9 +132,9 @@ const MyComponent = () => {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Text bold size={14} color={argonTheme.COLORS.WHITE}> CORREO O CONTRASEÑA INVÁLIDOS! </Text>
           <Button title="Close" onPress={() => setModalVisible(false)}>
-          <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                CERRAR
-              </Text>
+            <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+              CERRAR
+            </Text>
           </Button>
         </View>
       </Modal>
@@ -143,6 +143,10 @@ const MyComponent = () => {
 };
 
 class Login extends React.Component {
+  handleOtherButtonClick = () => {
+    const { navigation } = this.props;
+    navigation.navigate(Register); // Replace 'Register' with the screen name for the register screen
+  };
   render() {
     return (
       <Block flex middle>
@@ -161,12 +165,19 @@ class Login extends React.Component {
                 </Block>
                 <MyComponent />
               </Block>
+              <Block middle style={{marginBottom: 25}}>
+                <Button color="primary" style={styles.createButton} onPress={this.handleOtherButtonClick}>
+                  <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+                      INSCRIBIRSE
+                  </Text>
+                </Button>
+              </Block>
               <Block middle style={styles.socialConnect}>
                 <Text color="#8898AA" size={18}>
                   O iniciar sesión con
                 </Text>
                 <Block row style={{ marginTop: theme.SIZES.BASE }}>
-                  <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
+                  <Button style={{ ...styles.socialButtons, marginRight: 15 }}>
                     <Block row>
                       <Icon
                         name="logo-github"
@@ -202,10 +213,11 @@ class Login extends React.Component {
 
 
 
+
 const styles = StyleSheet.create({
   registerContainer: {
     width: width * 0.9,
-    height: height * 0.55,
+    height: height * 0.65,
     backgroundColor: "#F4F5F7",
     borderRadius: 4,
     shadowColor: argonTheme.COLORS.BLACK,
@@ -252,7 +264,7 @@ const styles = StyleSheet.create({
   },
   createButton: {
     width: width * 0.5,
-    marginTop: 25
+    marginTop: 60
   }
 });
 
