@@ -1,1 +1,1 @@
-export const url_back = "http://192.168.0.62:3000";
+export const url_back = "http://192.168.0.105:3000"; //ip do wifi
