@@ -71,6 +71,13 @@ function AppStack(props) {
       initialRouteName="Login"
     >
       <Drawer.Screen
+        name="Login"
+        component={LoginStack}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
         name="Inicio"
         component={InicioStack}
         screenOptions={{
@@ -94,13 +101,6 @@ function AppStack(props) {
       <Drawer.Screen
         name="Register"
         component={RegisterStack}
-        screenOptions={{
-          headerShown: false,
-        }}
-      />
-      <Drawer.Screen
-        name="Login"
-        component={LoginStack}
         screenOptions={{
           headerShown: false,
         }}
