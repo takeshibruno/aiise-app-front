@@ -12,7 +12,7 @@ import Register from './Register';
 
 const { width, height } = Dimensions.get("screen");
 
-const MyComponent = () => {
+const LoginButton = () => {
   const navigation = useNavigation();
 
   const [user_email, setEmail] = useState('');
@@ -28,7 +28,7 @@ const MyComponent = () => {
     setPassword(text);
   };
 
-  const handleButtonClick = () => {
+  const handleLoginButtonClick = () => {
     console.log('Button clicked!');
     console.log('Email:', user_email);
     console.log('Password:', user_password);
@@ -79,55 +79,50 @@ const MyComponent = () => {
 
   return (
     <Block flex center>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior="padding"
-        enabled>
-        <Block width={width * 0.8} style={{ marginBottom: 10 }}>
-          <Input
-            borderless
-            placeholder="Email"
-            iconContent={
-              <Icon
-                size={25}
-                color={argonTheme.COLORS.ICON}
-                name="ic_mail_24px"
-                family="ArgonExtra"
-                style={styles.inputIcons}
-              />
-            }
-            style={{ height: 50, fontSize: 22 }}
-            onChangeText={handleEmailChange}
-          />
+      <Block width={width * 0.8} style={{ marginBottom: 10 }}>
+        <Input
+          borderless
+          placeholder="Email"
+          iconContent={
+            <Icon
+              size={25}
+              color={argonTheme.COLORS.ICON}
+              name="ic_mail_24px"
+              family="ArgonExtra"
+              style={styles.inputIcons}
+            />
+          }
+          style={{ height: 50, fontSize: 22 }}
+          onChangeText={handleEmailChange}
+        />
+      </Block>
+      <Block width={width * 0.8}>
+        <Input
+          password
+          borderless
+          placeholder="Password"
+          iconContent={
+            <Icon
+              size={25}
+              color={argonTheme.COLORS.ICON}
+              name="padlock-unlocked"
+              family="ArgonExtra"
+              style={styles.inputIcons}
+            />
+          }
+          style={{ height: 50, fontSize: 22 }}
+          onChangeText={handlePasswordChange}
+        />
+      </Block>
+      <Block middle>
+        <Block row>
+          <Button color="primary" onPress={handleLoginButtonClick}>
+            <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+              INICIAR SESIÓN
+            </Text>
+          </Button>
         </Block>
-        <Block width={width * 0.8}>
-          <Input
-            password
-            borderless
-            placeholder="Password"
-            iconContent={
-              <Icon
-                size={25}
-                color={argonTheme.COLORS.ICON}
-                name="padlock-unlocked"
-                family="ArgonExtra"
-                style={styles.inputIcons}
-              />
-            }
-            style={{ height: 50, fontSize: 22 }}
-            onChangeText={handlePasswordChange}
-          />
-        </Block>
-        <Block middle>
-          <Block middle>
-            <Button color="primary" style={styles.createButton} onPress={handleButtonClick}>
-              <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                INICIAR SESIÓN
-              </Text>
-            </Button>
-          </Block>
-        </Block>
-      </KeyboardAvoidingView>
+      </Block>
       <Modal isVisible={isModalVisible}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Text bold size={14} color={argonTheme.COLORS.WHITE}> CORREO O CONTRASEÑA INVÁLIDOS! </Text>
@@ -142,11 +137,25 @@ const MyComponent = () => {
   );
 };
 
-class Login extends React.Component {
-  handleOtherButtonClick = () => {
-    const { navigation } = this.props;
+const RegisterButton = () => {
+  const navigation = useNavigation();
+
+  const handleRegisterButtonClick = () => {
     navigation.navigate(Register); // Replace 'Register' with the screen name for the register screen
   };
+
+  return (
+    <Block row center>
+      <Button color="primary" onPress={handleRegisterButtonClick}>
+        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+          INSCRIBIRSE
+        </Text>
+      </Button>
+    </Block>
+  );
+};
+
+class Login extends React.Component {
   render() {
     return (
       <Block flex middle>
@@ -163,14 +172,18 @@ class Login extends React.Component {
                     Benvenido al Aiise.org
                   </Text>
                 </Block>
-                <MyComponent />
-              </Block>
-              <Block middle style={{marginBottom: 25}}>
-                <Button color="primary" style={styles.createButton} onPress={this.handleOtherButtonClick}>
-                  <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                      INSCRIBIRSE
-                  </Text>
-                </Button>
+                <Block flex center>
+                  <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior="padding"
+                    enabled>
+
+                    <LoginButton />
+                    <RegisterButton />
+
+                  </KeyboardAvoidingView>
+                </Block>
+
               </Block>
               <Block middle style={styles.socialConnect}>
                 <Text color="#8898AA" size={18}>
@@ -210,9 +223,6 @@ class Login extends React.Component {
     );
   }
 }
-
-
-
 
 const styles = StyleSheet.create({
   registerContainer: {
