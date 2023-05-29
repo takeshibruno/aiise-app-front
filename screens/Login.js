@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { StyleSheet, ImageBackground, Dimensions, StatusBar, KeyboardAvoidingView } from "react-native";
+import { View, StyleSheet, ImageBackground, Dimensions, StatusBar, KeyboardAvoidingView } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 import Modal from 'react-native-modal';
 import { Button, Icon, Input } from "../components";
