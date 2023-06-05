@@ -7,6 +7,8 @@ import { Images, argonTheme } from "../constants";
 import { url_back } from "../constants/back";
 import { Box, Center, VStack, HStack, Alert, IconButton } from "native-base";
 import { CloseIcon } from "native-base";
+import Inicio from './Inicio';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -19,6 +21,7 @@ const RegisterField = () => {
   const [user_name, setName] = useState('');
   const [user_email, setEmail] = useState('');
   const [user_password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,6 +61,35 @@ const RegisterField = () => {
       setEmail("");
       setPassword("");
       setAlertVisible(true);
+
+      fetch(url_back + '/registrar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+      })
+  
+        .then(response => response.json())
+        .then(data => {
+          // Handle successful response
+          console.log(data);
+  
+          const desiredValue = 'Registrado';
+  
+          if (data.text === desiredValue) {
+            navigation.navigate(Inicio);
+          } else {
+            setModalVisible(true); // Show the modal
+          }
+  
+        })
+        .catch(error => {
+          // Handle error
+          console.error(error);
+        });
+
+      
     }
   }
 
