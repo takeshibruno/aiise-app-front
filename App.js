@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Image } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from '@use-expo/font';
@@ -6,6 +6,7 @@ import { Asset } from "expo-asset";
 import { Block, GalioProvider } from "galio-framework";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NativeBaseProvider } from 'native-base';
 
 // Before rendering any navigation stack
 import { enableScreens } from "react-native-screens";
@@ -29,10 +30,13 @@ const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen name="Login" component={LoginScreen} />
-      {/* Add other authentication screens if needed */}
-    </Stack.Navigator>
+    <NativeBaseProvider>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginScreen} />
+        {/* Add other authentication screens if needed */}
+      </Stack.Navigator>
+    </NativeBaseProvider>
+
   );
 };
 
@@ -65,22 +69,24 @@ export default props => {
     console.warn(error);
   };
 
- function _handleFinishLoading() {
+  function _handleFinishLoading() {
     setLoading(true);
   };
 
-  if(!fontsLoaded && !isLoadingComplete) {
+  if (!fontsLoaded && !isLoadingComplete) {
     SplashScreen.preventAutoHideAsync();
-  } else if(fontsLoaded) {
+  } else if (fontsLoaded) {
     SplashScreen.hideAsync();
     return (
-      <NavigationContainer>
-        <GalioProvider theme={argonTheme}>
-          <Block flex>
-            <Screens />
-          </Block>
-        </GalioProvider>
-      </NavigationContainer>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <GalioProvider theme={argonTheme}>
+            <Block flex>
+              <Screens />
+            </Block>
+          </GalioProvider>
+        </NavigationContainer>
+      </NativeBaseProvider>
     );
   } else {
     return null

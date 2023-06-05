@@ -5,6 +5,8 @@ import { Block, Checkbox, Text } from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import { url_back } from "../constants/back";
+import { Box, Center, VStack, HStack, Alert, IconButton } from "native-base";
+import { CloseIcon } from "native-base";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -13,6 +15,7 @@ const RegisterField = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [anotherModaVisible, setAnotherModalVisible] = useState(false);
   const [registerModalVisible, setRegisterModalVisible] = useState(false);
+  const [isAlertVisible, setAlertVisible] = useState(false);
   const [user_name, setName] = useState('');
   const [user_email, setEmail] = useState('');
   const [user_password, setPassword] = useState('');
@@ -47,14 +50,14 @@ const RegisterField = () => {
     if (user_name.length == 0) {
       setAnotherModalVisible(true);
     } else if (!validateEmail(user_email)) {
+      setEmail("");
       setModalVisible(true);
       return;
     } else {
-      console.log("Cuenta creada con exito");
       setName("");
       setEmail("");
       setPassword("");
-
+      setAlertVisible(true);
     }
   }
 
@@ -180,6 +183,43 @@ const RegisterField = () => {
             <Text bold size={14} color={argonTheme.COLORS.WHITE}> CERRAR </Text>
           </Button>
         </View>
+      </Modal>
+      <Modal isVisible={isAlertVisible}>
+        <Center flex={1}>
+          <VStack space={5} maxW="400">
+            <Center>
+              <VStack space={5} maxW="400">
+                <Alert w="100%" status="success">
+                  <VStack space={2} flexShrink={1} w="100%">
+                    <HStack flexShrink={1} space={1} alignItems="center" justifyContent="space-between">
+                      <HStack space={2} flexShrink={1} alignItems="center">
+                        <Alert.Icon />
+                        <Text fontSize="md" fontWeight="medium" _dark={{
+                          color: "coolGray.800"
+                        }}>
+                          Te has registrado con exito!
+                        </Text>
+                      </HStack>
+                      <IconButton variant="unstyled" _focus={{
+                        borderWidth: 0
+                      }} icon={<CloseIcon size="3" />} _icon={{
+                        color: "coolGray.600"
+                      }} onPress={() => setAlertVisible(false)}/>
+                    </HStack>
+                    <Box pl="6" _dark={{
+                      _text: {
+                        color: "coolGray.600"
+                      }
+                    }}>
+                      Te has registrado correctamente en nuestra app, espere que el admin te atribua un grupo y ya podras utilizarla!
+                    </Box>
+                  </VStack>
+                </Alert>
+              </VStack>
+            </Center>
+
+          </VStack>
+        </Center>
       </Modal>
     </Block>
   );
