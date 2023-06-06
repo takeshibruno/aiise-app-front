@@ -1,45 +1,26 @@
-import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
-import { Block, theme } from 'galio-framework';
+import { Fab, Icon, Box, Center, NativeBaseProvider } from "native-base";
+import React from "react";
+import { AntDesign } from "@expo/vector-icons";
 
-import { Card } from '../components';
-import articles from '../constants/articles';
-const { width } = Dimensions.get('screen');
+const Example = () => {
+  return <Center>
+      <Box height="100" w={[200, 300, 400]} shadow="1" rounded="lg" _dark={{
+      bg: "coolGray.200:alpha.20"
+    }} _light={{
+      bg: "coolGray.200:alpha.20"
+    }}>
+      
+      <Fab renderInPortal={false} shadow={2} size="sm" icon={<Icon color="white" as={AntDesign} name="plus" size="sm"/>} label="Añadir un comunicado " />  
+      </Box>
+    </Center>;
+};
 
-class Inicio extends React.Component {
-  renderArticles = () => {
-    return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.articles}>
-        <Block flex>
-          <Block flex row>
-            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
-            <Card item={articles[2]} />
-          </Block>
-          <Card item={articles[3]} horizontal />
-        </Block>
-      </ScrollView>
-    )
-  }
-
-  render() {
-    return (
-      <Block flex center style={styles.home}>
-        {this.renderArticles()}
-      </Block>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  home: {
-    width: width,    
-  },
-  articles: {
-    width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE,
-  },
-});
-
-export default Inicio;
+    export default () => {
+        return (
+          <NativeBaseProvider>
+            <Center flex={1} px="3">
+                <Example />
+            </Center>
+          </NativeBaseProvider>
+        );
+    };
