@@ -1,4 +1,4 @@
-import { Block, Text, theme } from "galio-framework";
+import { Block, theme } from "galio-framework";
 import { Image, ScrollView, StyleSheet } from "react-native";
 
 import { DrawerItem as DrawerCustomItem } from "../components";
@@ -13,7 +13,7 @@ function CustomDrawerContent({
   state,
   ...rest
 }) {
-  const screens = ["Inicio", "Agenda", "Login", "Register", "Profile"];
+  const screens = ["Inicio", "Agenda", "Profile"];
   return (
     <Block
       style={styles.container}
