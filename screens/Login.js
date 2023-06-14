@@ -64,7 +64,7 @@ const LoginButton = () => {
         const desiredValue = 'Autenticado';
 
         if (data.text === desiredValue) {
-          navigation.navigate(Inicio);
+          navigation.navigate("Inicio");
         } else {
           setModalVisible(true); // Show the modal
         }
