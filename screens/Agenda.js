@@ -4,11 +4,15 @@ import { Block, theme } from 'galio-framework';
 import { url_back } from '../constants/back';
 import { Card } from '../components';
 import articles from '../constants/articles';
-
+import fetchData from '../constants/comunicados';
 const { width } = Dimensions.get('screen');
 
 class Agenda extends React.Component {
   renderArticles = () => {
+    const todos_comunicados = fetchData._j;
+    console.log(todos_comunicados[0]);
+    console.log(todos_comunicados[1]);
+
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
