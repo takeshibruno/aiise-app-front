@@ -1,5 +1,5 @@
 import { Fab, Icon, Box, Center, NativeBaseProvider, VStack, FormControl, Input, Text, Button } from "native-base";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Dimensions, View, TouchableOpacity, KeyboardAvoidingView, Alert, ScrollView, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Modal from 'react-native-modal';
@@ -17,9 +17,33 @@ const Example = () => {
   const [email_comunicado, setEmail] = useState('');
   const [titulo_comunicado, setTitulo] = useState('');
   const [contenido_comunicado, setContenido] = useState('');
-  
+
   const [date, setDate] = useState(new Date());
   const [picker, setPicker] = useState(false);
+
+  const [comunicados, setComunicados] = useState([]);
+
+  useEffect(() => {
+    fetchComunicados();
+  }, []);
+
+  const fetchComunicados = () => {
+    fetch(url_back + '/comunicados')
+      .then(response => response.json())
+      .then(data => {
+        // Adapt the fetched data to the desired format
+        const comunicados_adaptados = data.map(obj => ({
+          title: obj.TITULO_COMUNICADO,
+          cta: obj.CONTENIDO_COMUNICADO,
+          expiration_date: obj.FECHA_EXPIRACIÓN,
+        }));
+
+        setComunicados(comunicados_adaptados);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   const styles = StyleSheet.create({
     home: {
@@ -37,19 +61,10 @@ const Example = () => {
     },
   });
 
-
-  const todos_comunicados = fetchData._j;
-
-  const comunicados_adaptados = todos_comunicados.map((obj) => ({
-    title: obj.TITULO_COMUNICADO,
-    cta: obj.CONTENIDO_COMUNICADO,
-    expiration_date: obj.FECHA_EXPIRACIÓN,
-  }));
-
   const rows = [];
   let row = [];
 
-  comunicados_adaptados.forEach((item, index) => {
+  comunicados.forEach((item, index) => {
     if (index % 2 === 0 && index !== 0) {
       rows.push(<Block flex row key={index}>{row}</Block>);
       row = [];
@@ -58,7 +73,7 @@ const Example = () => {
   });
 
   if (row.length > 0) {
-    rows.push(<Block flex row key={comunicados_adaptados.length}>{row}</Block>);
+    rows.push(<Block flex row key={comunicados.length}>{row}</Block>);
   }
 
   const toggleDate = () => {
@@ -78,6 +93,10 @@ const Example = () => {
 
   const handleButtonClick = () => {
     console.log("Fechar");
+    setEmail({ name: '' });
+    setTitulo({ name: '' });
+    setContenido({ name: '' });
+    setDate(new Date());
     setModalVisible(false);
   }
 
@@ -116,6 +135,10 @@ const Example = () => {
           if (data.text === desiredValue) {
             setModalVisible(false);
             Alert.alert('Exito!', 'Tu comunicado se ha publicado correctamente y ya puedes verlo en la pantalla principal.')
+            setEmail({ name: '' });
+            setTitulo({ name: '' });
+            setContenido({ name: '' });
+            fetchComunicados();
           } else {
             setEmail({ name: '' });
             Alert.alert('Error!', 'El correo que has introducido no esta registrado en los usuarios.') // Show the modal
@@ -124,6 +147,7 @@ const Example = () => {
         })
         .catch(error => {
           console.error(error);
+          console.log("erro ta aqui");
         });
     }
 
