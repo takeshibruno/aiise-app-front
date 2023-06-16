@@ -1,11 +1,13 @@
 import { Fab, Icon, Box, Center, NativeBaseProvider, VStack, FormControl, Input, Text, Button } from "native-base";
 import { React, useState } from "react";
-import { Dimensions, View, TouchableOpacity, KeyboardAvoidingView, Alert } from "react-native";
+import { Dimensions, View, TouchableOpacity, KeyboardAvoidingView, Alert, ScrollView, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Modal from 'react-native-modal';
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { url_back } from "../constants/back";
-
+import fetchData from '../constants/comunicados';
+import { Card } from '../components';
+import { Block, theme } from 'galio-framework';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -18,6 +20,46 @@ const Example = () => {
   
   const [date, setDate] = useState(new Date());
   const [picker, setPicker] = useState(false);
+
+  const styles = StyleSheet.create({
+    home: {
+      width: width,
+    },
+    articles: {
+      width: width - theme.SIZES.BASE * 2,
+      paddingVertical: theme.SIZES.BASE,
+    },
+    fabContainer: {
+      flex: 1,
+      justifyContent: "flex-end",
+      marginBottom: 20,
+      marginLeft: width
+    },
+  });
+
+
+  const todos_comunicados = fetchData._j;
+
+  const comunicados_adaptados = todos_comunicados.map((obj) => ({
+    title: obj.TITULO_COMUNICADO,
+    cta: obj.CONTENIDO_COMUNICADO,
+    expiration_date: obj.FECHA_EXPIRACIÓN,
+  }));
+
+  const rows = [];
+  let row = [];
+
+  comunicados_adaptados.forEach((item, index) => {
+    if (index % 2 === 0 && index !== 0) {
+      rows.push(<Block flex row key={index}>{row}</Block>);
+      row = [];
+    }
+    row.push(<Card item={item} key={index} style={{ marginRight: theme.SIZES.BASE }} />);
+  });
+
+  if (row.length > 0) {
+    rows.push(<Block flex row key={comunicados_adaptados.length}>{row}</Block>);
+  }
 
   const toggleDate = () => {
     setPicker(!picker);
@@ -103,7 +145,24 @@ const Example = () => {
 
   return (
     <Center>
-      <Fab position="absolute" bottom={-height * 0.41} right={-width * 0.46} renderInPortal={false} onPress={handleClick} shadow={2} size="sm" icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />} label="Añadir un comunicado " />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.articles}
+      >
+        <Block flex>
+          {rows}
+        </Block>
+      </ScrollView>
+      <View style={styles.fabContainer}>
+        <Fab
+          renderInPortal={false}
+          onPress={handleClick}
+          shadow={2}
+          size="sm"
+          icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />}
+          label="Añadir un comunicado"
+        />
+      </View>
       <Modal isVisible={isModalVisible}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <VStack width="90%" mx="3" maxW="300px">
@@ -132,7 +191,7 @@ const Example = () => {
                 <Input onChangeText={value => setTitulo({
                   ...titulo_comunicado,
                   name: value
-                })} value={titulo_comunicado.name}/>
+                })} value={titulo_comunicado.name} />
                 <FormControl.HelperText _text={{
                   fontSize: 'xs'
                 }}>
