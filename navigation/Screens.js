@@ -15,6 +15,7 @@ import Agenda from "../screens/Agenda";
 import Login from "../screens/Login";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
+import Citas from "../screens/Citas";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -105,6 +106,20 @@ function AppStack(props) {
           headerShown: false,
         }}
       />
+      <Drawer.Screen
+        name="Elements"
+        component={ElementsStack}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Citas"
+        component={CitasStack}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -166,6 +181,35 @@ function InicioStack(props) {
     </Stack.Navigator>
   );
 }
+
+function CitasStack(props) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        mode: "card",
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen
+        name="CitasSub"
+        component={Citas}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Citas"
+              search
+              options
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" },
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 
 function AgendaStack(props) {
   return (
@@ -234,12 +278,9 @@ function ElementsStack(props) {
       }}
     >
       <Stack.Screen
-        name="Elements"
+        name="ElementsSub"
         component={Elements}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Elements" navigation={navigation} scene={scene} />
-          ),
           cardStyle: { backgroundColor: "#F8F9FE" },
         }}
       />

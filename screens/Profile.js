@@ -7,11 +7,13 @@ import {
   ImageBackground,
   Platform
 } from "react-native";
-import { Block, Text, theme } from "galio-framework";
-
+import { Block, Text, theme, Center } from "galio-framework";
+import CardUpd from '../components/CardUpd';
 import { Button } from "../components";
 import { Images, argonTheme } from "../constants";
 import { HeaderHeight } from "../constants/utils";
+import articlesDiferente from '../constants/articlesDiferente';
+
 
 const { width, height } = Dimensions.get("screen");
 
@@ -45,18 +47,6 @@ class Profile extends React.Component {
                     space="evenly"
                     style={{ marginTop: 20, paddingBottom: 24 }}
                   >
-                    <Button
-                      small
-                      style={{ backgroundColor: argonTheme.COLORS.INFO }}
-                    >
-                      CONNECT
-                    </Button>
-                    <Button
-                      small
-                      style={{ backgroundColor: argonTheme.COLORS.DEFAULT }}
-                    >
-                      MESSAGE
-                    </Button>
                   </Block>
                   <Block row space="between">
                     <Block middle>
@@ -66,9 +56,9 @@ class Profile extends React.Component {
                         color="#525F7F"
                         style={{ marginBottom: 4 }}
                       >
-                        2K
+                        20
                       </Text>
-                      <Text size={12} color={argonTheme.COLORS.TEXT}>Orders</Text>
+                      <Text size={12} color={argonTheme.COLORS.TEXT}>Citas</Text>
                     </Block>
                     <Block middle>
                       <Text
@@ -79,7 +69,7 @@ class Profile extends React.Component {
                       >
                         10
                       </Text>
-                      <Text size={12} color={argonTheme.COLORS.TEXT}>Photos</Text>
+                      <Text size={12} color={argonTheme.COLORS.TEXT}>Peluquerías</Text>
                     </Block>
                     <Block middle>
                       <Text
@@ -88,7 +78,7 @@ class Profile extends React.Component {
                         size={18}
                         style={{ marginBottom: 4 }}
                       >
-                        89
+                        9
                       </Text>
                       <Text size={12} color={argonTheme.COLORS.TEXT}>Comments</Text>
                     </Block>
@@ -100,58 +90,26 @@ class Profile extends React.Component {
                       Jessica Jones, 27
                     </Text>
                     <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
-                      San Francisco, USA
+                      Boadilla del Monte, Madrid
                     </Text>
-                  </Block>
-                  <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
-                    <Block style={styles.divider} />
-                  </Block>
-                  <Block middle>
-                    <Text
-                      size={16}
-                      color="#525F7F"
-                      style={{ textAlign: "center" }}
-                    >
-                      An artist of considerable range, Jessica name taken by
-                      Melbourne …
-                    </Text>
-                    <Button
-                      color="transparent"
-                      textStyle={{
-                        color: "#233DD2",
-                        fontWeight: "500",
-                        fontSize: 16
-                      }}
-                    >
-                      Show more
-                    </Button>
                   </Block>
                   <Block
                     row
                     space="between"
                   >
-                    <Text bold size={16} color="#525F7F" style={{marginTop: 12}}>
-                      Album
+                    <Text marginTop={110} bold size={16} color="#525F7F" style={{ marginTop: 12 }}>
+                      Mis citas activas:
                     </Text>
-                    <Button
-                      small
-                      color="transparent"
-                      textStyle={{ color: "#5E72E4", fontSize: 12, marginLeft: 24 }}
-                    >
-                      View all
-                    </Button>
+
+                   
                   </Block>
-                  <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
-                    <Block row space="between" style={{ flexWrap: "wrap" }}>
-                      {Images.Viewed.map((img, imgIndex) => (
-                        <Image
-                          source={{ uri: img }}
-                          key={`viewed-${img}`}
-                          resizeMode="cover"
-                          style={styles.thumb}
-                        />
-                      ))}
+                  <Block
+                    marginTop={30}
+                    style={{ paddingBottom: -HeaderHeight * 2 }}>
+                       <Block flex row>
+                      <CardUpd item={articlesDiferente[0]} style={{ marginRight: theme.SIZES.BASE }} horizontal />
                     </Block>
+
                   </Block>
                 </Block>
               </Block>

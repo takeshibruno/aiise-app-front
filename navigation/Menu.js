@@ -13,7 +13,7 @@ function CustomDrawerContent({
   state,
   ...rest
 }) {
-  const screens = ["Inicio", "Agenda", "Login", "Register", "Profile"];
+  const screens = ["Inicio", "Agenda", "Login", "Register", "Profile", "Elements", "Citas"];
   return (
     <Block
       style={styles.container}
@@ -49,6 +49,7 @@ function CustomDrawerContent({
         </ScrollView>
       </Block>
     </Block>
+    
   );
 }
 

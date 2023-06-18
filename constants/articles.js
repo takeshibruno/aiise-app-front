@@ -1,29 +1,48 @@
 export default [
   {
-    title: 'Ice cream is made with carrageenan …',
-    image: 'https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80',
-    cta: 'View article', 
+    title: 'Aura Peluquería',
+    image: 'https://ayuntamientoboadilladelmonte.org/sites/default/files/styles/large/public/peluqueria_aura.jpg?itok=l-zf1aIW',
+    cta: 'Coger cita', 
     horizontal: true
   },
   {
-    title: 'Is makeup one of your daily esse …',
-    image: 'https://images.unsplash.com/photo-1519368358672-25b03afee3bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2004&q=80',
-    cta: 'View article'
+    title: 'Carche Beauty & Health',
+    image: 'https://cdn1.treatwell.net/images/view/v2.i2101707.w720.h480.x815C67ED/',
+    cta: 'Coger cita', 
+    horizontal: true
   },
   {
-    title: 'Coffee is more than just a drink: It’s …',
-    image: 'https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80',
-    cta: 'View article' 
+    title: 'Viny Peluquería',
+    image: 'https://images-re-inmofactory.milanuncios.com/images/inmofactory/documents/1/135644/32053316/516662963.jpg?rule=hw396_70',
+    cta: 'Coger cita', 
+    horizontal: true
   },
   {
-    title: 'Fashion is a popular style, especially in …',
-    image: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1326&q=80',
-    cta: 'View article' 
+    title: 'Barbearía Don Luis 8',
+    image: 'https://boadillaaumentada.com/wp-content/uploads/luis.jpg',
+    cta: 'Coger cita', 
   },
   {
-    title: 'Argon is a great free UI packag …',
-    image: 'https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?fit=crop&w=1947&q=80',
-    cta: 'View article', 
+    title: 'El Barroco Peluquería Estética',
+    image: 'https://infoboadilla.com/resources/uploads/company/4816/WhatsApp_Image_20230224_at_175303_A1lYmXjjLp.webp',
+    cta: 'Coger cita', 
+    horizontal: true
+  },
+  {
+    title: 'Jorge López Peluqueros',
+    image: 'https://infoboadilla.com/resources/uploads/company/1997/fachada_copy_1444735914.webp',
+    cta: 'Coger cita',  
+  },
+  {
+    title: 'Peluquería Bela Brasil',
+    image: 'https://boadillaaumentada.com/wp-content/uploads/bella.jpg',
+    cta: 'Coger cita',  
+    horizontal: true
+  },
+  {
+    title: 'Kibo Peluqueros',
+    image: 'https://www.kibopeluqueros.es/wp-content/uploads/2023/02/boadilla-individual.jpg',
+    cta: 'Coger cita', 
     horizontal: true
   },
 ];
