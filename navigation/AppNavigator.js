@@ -2,8 +2,8 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Import your screens
-import LoginScreen from './LoginScreen';
-import HomeScreen from './HomeScreen';
+import Login from "../screens/Login";
+import Inicio from "../screens/Inicio";
 
 // Create a stack navigator
 const Stack = createStackNavigator();
@@ -12,8 +12,8 @@ const Stack = createStackNavigator();
 const AppNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Inicio" component={Inicio} />
     </Stack.Navigator>
   );
 };
