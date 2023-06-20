@@ -2,8 +2,6 @@ import { Dimensions } from "react-native";
 // header for screens
 import { Header } from "../components";
 
-import Articles from "../screens/Articles";
-
 // drawer
 import CustomDrawerContent from "./Menu";
 import Elements from "../screens/Elements";
