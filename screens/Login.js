@@ -168,7 +168,7 @@ class Login extends React.Component {
               <Block flex>
                 <Block flex={0.30} middle>
                   <Text color="#8898AA" size={18}>
-                    Benvenido al Aiise.org
+                    Bienvenido a ScheduleMySession
                   </Text>
                 </Block>
                 <Block flex center>

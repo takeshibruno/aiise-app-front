@@ -181,7 +181,7 @@ const RegisterField = () => {
               <Block middle>
                 <Button color={isChecked ? 'primary' : 'gray'} style={styles.createButton} onPress={handleButtonClick} disabled={!isChecked}>
                   <Text bold size={14} color={isChecked ? argonTheme.COLORS.WHITE : 'gray'}>
-                    CRIAR CUENTA
+                    CREAR CUENTA
                   </Text>
                 </Button>
               </Block>

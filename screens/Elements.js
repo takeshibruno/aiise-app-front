@@ -105,7 +105,7 @@ const Example = () => {
       <Select selectedValue={peluquero}
         minWidth={width / 1.20}
         accessibilityLabel="Choose Service"
-        placeholder="Choose Service"
+        placeholder="Elige el peluquero"
         _selectedItem={{
           bg: "teal.600",
           endIcon: <CheckIcon size="5" />
@@ -114,14 +114,14 @@ const Example = () => {
         onValueChange={value => setPeluquero(value)}>
         <Select.Item label="Lucas Ricci" value="Lucas Ricci" />
         <Select.Item label="Marcelo Lopez" value="Marcelo Lopez" />
-        <Select.Item label="Bruno Honda" value="Luiza Hernandes Parra Honda" />
+        <Select.Item label="Bruno Honda" value="Bruno Honda" />
         <Select.Item label="Cristiano Ronaldo" value="Su" />
         <Select.Item label="Neymar da Silva Santos Junior" value="Neymar da Silva Santos Junior" />
         <Select.Item label="Lionel Messi" value="Messi" />
 
       </Select>
       <FormControl.Label marginTop={10}>Horários disponibles para esta fecha: </FormControl.Label>
-      <Select selectedValue={horario} minWidth={width / 1.20} accessibilityLabel="Choose Service" placeholder="Choose Service" _selectedItem={{
+      <Select selectedValue={horario} minWidth={width / 1.20} accessibilityLabel="Choose Service" placeholder="Elige la fecha" _selectedItem={{
         bg: "teal.600",
         endIcon: <CheckIcon size="5" />
       }} mt={1} onValueChange={value => setHorario(value)}>
@@ -132,7 +132,7 @@ const Example = () => {
         <Select.Item label="21:45" value="21:45" />
       </Select>
       <FormControl.Label marginTop={10}>Elige tu servicios: </FormControl.Label>
-      <Select selectedValue={service} minWidth={width / 1.20} accessibilityLabel="Choose Service" placeholder="Choose Service" _selectedItem={{
+      <Select selectedValue={service} minWidth={width / 1.20} accessibilityLabel="Choose Service" placeholder="Elige el servicio" _selectedItem={{
         bg: "teal.600",
         endIcon: <CheckIcon size="5" />
       }} mt={1} onValueChange={value => setService(value)}>
